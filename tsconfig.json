@@ -1,36 +1,24 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noEmit": true,
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "noEmit": true,
 
-    "baseUrl": ".",
+        "baseUrl": ".",
 
-    "paths": {
-      "mod": ["./code/mod"],
-      "modlib": ["./code/modlib"]
+        "paths": {
+            "modlib": ["./SDK/modlib"],
+            "mod": ["./SDK/mod"]
+        },
+
+        "typeRoots": ["./SDK/mod", "./SDK/modlib", "./node_modules/@types"]
     },
 
-    "typeRoots": [
-      "./code/mod",
-      "./code/modlib",
-      "./node_modules/@types"
-    ]
-  },
+    "include": ["src/**/*", "__MERGED.ts", "SDK/mod/**/*", "SDK/modlib/**/*"],
 
-  "include": [
-    "src/**/*",
-    "__MERGED.ts",
-    "code/mod/**/*",
-    "code/modlib/**/*"
-  ],
-
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+    "exclude": ["node_modules", "dist"]
 }
