@@ -24,17 +24,17 @@ export abstract class AGameMode {
     ongoingPlayer?(eventPlayer: mod.Player): void
 }
 
-// -------- FILE: src\GameModes\TDMGameMode.ts --------
-export class TDMGameMode extends AGameMode {
+// -------- FILE: src\GameModes\Example\ExampleGameMode.ts --------
+export class ExampleGameMode extends AGameMode {
     onGameModeStarted(): void {
-        console.log('Example TDM Mod!')
+        console.log('Cool Example GameMod!')
     }
 }
 
 // -------- FILE: src\main.ts --------
 // Create the active game mode instance
 
-export const gameMode = new TDMGameMode()
+export const gameMode = new ExampleGameMode()
 
 /* ------------------------------------------------------------
  *  ENGINE EVENTS -> Redirect to GameMode instance
