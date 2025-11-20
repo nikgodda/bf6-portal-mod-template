@@ -1,9 +1,7 @@
-import { Core } from "src/Core/AGameMode";
+import { AGameMode } from "src/Core/AGameMode";
 
-export namespace GameModes {
-    export class TDMGameMode extends Core.AGameMode {
-        onGameModeStarted(): void {
-            console.log('Example TDM Mod!')
-        }
+export class TDMGameMode extends AGameMode {
+    onGameModeStarted(): void {
+        console.log('Example TDM Mod!')
     }
 }

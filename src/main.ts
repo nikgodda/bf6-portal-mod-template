@@ -1,9 +1,9 @@
 import * as modlib from 'modlib'
-import { GameModes } from './GameModes/TDMGameMode'
+import { TDMGameMode } from './GameModes/TDMGameMode'
 
 // Create the active game mode instance
 
-export const gameMode = new GameModes.TDMGameMode()
+export const gameMode = new TDMGameMode()
 
 /* ------------------------------------------------------------
  *  ENGINE EVENTS -> Redirect to GameMode instance
