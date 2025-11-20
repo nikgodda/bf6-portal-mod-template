@@ -90,7 +90,7 @@ src/
 │       └─ AI/
 │            ├─ AbstractAI.ts
 │            ├─ RoamerAI.ts
-│            └─ Types.ts
+│            └─ AITypes.ts
 │
 ├─ GameModes/
 │  └─ TDM/
