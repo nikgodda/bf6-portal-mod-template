@@ -8,7 +8,7 @@
     "watch": "bf6mod watch"
   },
   "devDependencies": {
-    "bf6-portal-mod-framework": "^1.0.15",
+    "bf6-portal-mod-framework": "^1.0.17",
     "typescript": "^5.0.0"
   }
 }
