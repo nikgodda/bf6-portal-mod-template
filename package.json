@@ -5,10 +5,10 @@
   "scripts": {
     "build": "bf6mod build",
     "update-sdk": "bf6mod update-sdk",
-    "watch": "tsc -w"
+    "watch": "bf6mod watch"
   },
   "devDependencies": {
-    "bf6-portal-mod-framework": "^1.0.4",
+    "bf6-portal-mod-framework": "^1.0.8",
     "typescript": "^5.0.0"
   }
 }
