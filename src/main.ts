@@ -1,7 +1,10 @@
 import * as modlib from 'modlib'
 import { TDMGameMode } from './GameModes/TDM/TDMGameMode'
 
+/* ------------------------------------------------------------
 // Create the active game mode instance
+ * ------------------------------------------------------------ */
+
 export const gameMode = new TDMGameMode()
 
 /* ------------------------------------------------------------
