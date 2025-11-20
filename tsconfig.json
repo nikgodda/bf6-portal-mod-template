@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+
+    "baseUrl": ".",
+
+    "paths": {
+      "mod": ["./code/mod"],
+      "modlib": ["./code/modlib"]
+    },
+
+    "typeRoots": [
+      "./code/mod",
+      "./code/modlib",
+      "./node_modules/@types"
+    ]
+  },
+
+  "include": [
+    "src/**/*",
+    "__MERGED.ts",
+    "code/mod/**/*",
+    "code/modlib/**/*"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
