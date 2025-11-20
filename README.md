@@ -14,7 +14,7 @@ This template includes:
 
 # 🚀 Quick Start
 
-Use **degit** to copy the template into a new folder:
+Copy the template into a new folder:
 
 ```bash
 npx degit nikgodda/bf6-portal-mod-template my-mod
@@ -22,7 +22,7 @@ cd my-mod
 npm install
 ```
 
-This creates a clean mod project you can immediately begin working with.
+This creates a clean mod project you fully own.
 
 ---
 
@@ -30,15 +30,19 @@ This creates a clean mod project you can immediately begin working with.
 
 ```
 SDK/
-  mod/        Type definitions for Portal mod API
-  modlib/     Utility library APIs
+  mod/
+  modlib/
 
 src/
-  Core/
-    GameMode/AGameMode.ts
-  GameModes/
-    GameMode.ts
   main.ts
+
+  Core/
+    GameMode/
+      AGameMode.ts
+
+  GameModes/
+    TDM/
+      TDMGameMode.ts
 
 __MERGED.ts   (generated automatically)
 ```
@@ -56,8 +60,14 @@ Base class providing all BF6 event callbacks, such as:
 - onPlayerDied  
 - and more  
 
-### `GameMode`
-Your gameplay logic goes here:
+### `TDMGameMode`
+Example game mode implementation stored under:
+
+```
+src/GameModes/TDM/TDMGameMode.ts
+```
+
+You place your game logic inside the class:
 
 ```ts
 onGameModeStarted() {
@@ -66,33 +76,39 @@ onGameModeStarted() {
 ```
 
 ### `main.ts`
-Bridges Battlefield Portal engine events to your GameMode methods.
+This file bridges Portal engine events into your selected GameMode.
+
+This is the entry point used by the merge tool.
 
 ---
 
 # 🛠 Commands
 
-### Build merged output
+### Build the merged output
 
 ```
 npm run build
 ```
 
-Generates:
+Produces:
 
 ```
 __MERGED.ts
 ```
 
-Paste this file into the Portal Mod Editor.
+Paste its contents into the BF6 Portal Mod Editor.
 
-### Watch mode (auto-merge on file save)
+---
+
+### Watch mode (auto-merge on save)
 
 ```
 npm run watch
 ```
 
-Rebuilds `__MERGED.ts` whenever files inside `src/` change.
+Rebuilds `__MERGED.ts` whenever files in `src/` are changed.
+
+---
 
 ### Update SDK typings
 
@@ -100,27 +116,32 @@ Rebuilds `__MERGED.ts` whenever files inside `src/` change.
 npm run update-sdk
 ```
 
-Downloads the latest official BF6 Portal SDK files into:
+Downloads the latest official BF6 Portal SDK typings into:
 
 ```
 SDK/mod
 SDK/modlib
 ```
 
+Use this when EA releases updates.
+
 ---
 
-# 🛠 Customization
+# ✨ Customization
 
-Create new `.ts` files anywhere inside `src/`.  
-The merge tool includes all files automatically.
+Add new `.ts` files anywhere inside `src/`.
 
-Extend your project with:
+The merge tool automatically includes all source files.
+
+You may add:
 
 - additional game modes  
 - AI utilities  
-- gameplay logic  
-- shared helpers  
-- services  
+- reusable helpers  
+- gameplay logic modules  
+- services for managing state, UI, objectives, etc.
+
+Everything inside `src/` is merged into `__MERGED.ts`.
 
 ---
 
