@@ -1,44 +1,40 @@
 import * as modlib from 'modlib'
 
 // -------- FILE: src\Core\AGameMode.ts --------
-export namespace Core {
-    export abstract class AGameMode {
-        onGameModeStarted?(): void
-        onPlayerJoinGame?(eventPlayer: mod.Player): void
-        onPlayerDeployed?(eventPlayer: mod.Player): void
-        onPlayerDamaged?(
-            eventPlayer: mod.Player,
-            eventOtherPlayer: mod.Player,
-            eventDamageType: mod.DamageType,
-            eventWeaponUnlock: mod.WeaponUnlock
-        ): void
-        onPlayerDied?(
-            eventPlayer: mod.Player,
-            eventOtherPlayer: mod.Player,
-            eventDeathType: mod.DeathType,
-            eventWeaponUnlock: mod.WeaponUnlock
-        ): void
-        onPlayerLeaveGame?(eventNumber: number): void
-        onSpawnerSpawned?(eventPlayer: mod.Player, spawner: mod.Spawner): void
-        onAIMoveToSucceeded?(eventPlayer: mod.Player): void
-        onAIMoveToFailed?(eventPlayer: mod.Player): void
-        ongoingPlayer?(eventPlayer: mod.Player): void
-    }
+export abstract class AGameMode {
+    onGameModeStarted?(): void
+    onPlayerJoinGame?(eventPlayer: mod.Player): void
+    onPlayerDeployed?(eventPlayer: mod.Player): void
+    onPlayerDamaged?(
+        eventPlayer: mod.Player,
+        eventOtherPlayer: mod.Player,
+        eventDamageType: mod.DamageType,
+        eventWeaponUnlock: mod.WeaponUnlock
+    ): void
+    onPlayerDied?(
+        eventPlayer: mod.Player,
+        eventOtherPlayer: mod.Player,
+        eventDeathType: mod.DeathType,
+        eventWeaponUnlock: mod.WeaponUnlock
+    ): void
+    onPlayerLeaveGame?(eventNumber: number): void
+    onSpawnerSpawned?(eventPlayer: mod.Player, spawner: mod.Spawner): void
+    onAIMoveToSucceeded?(eventPlayer: mod.Player): void
+    onAIMoveToFailed?(eventPlayer: mod.Player): void
+    ongoingPlayer?(eventPlayer: mod.Player): void
 }
 
 // -------- FILE: src\GameModes\TDMGameMode.ts --------
-export namespace GameModes {
-    export class TDMGameMode extends Core.AGameMode {
-        onGameModeStarted(): void {
-            console.log('Example TDM Mod!')
-        }
+export class TDMGameMode extends AGameMode {
+    onGameModeStarted(): void {
+        console.log('Example TDM Mod!')
     }
 }
 
 // -------- FILE: src\main.ts --------
 // Create the active game mode instance
 
-export const gameMode = new GameModes.TDMGameMode()
+export const gameMode = new TDMGameMode()
 
 /* ------------------------------------------------------------
  *  ENGINE EVENTS -> Redirect to GameMode instance
