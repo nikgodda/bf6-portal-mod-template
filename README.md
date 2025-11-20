@@ -1,8 +1,5 @@
 # 🚀 BF6 Portal Mod Template
 
-![SDK Update](https://github.com/nikgodda/bf6-portal-mod-template/actions/workflows/check-sdk-update.yml/badge.svg)
-
-
 A starter template for building Battlefield 6 Portal mods using the bf6-portal-mod-framework.
 
 This template provides:
