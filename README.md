@@ -89,7 +89,7 @@ src/
 │       ├─ PlayerHuman.ts
 │       └─ AI/
 │            ├─ AbstractAI.ts
-│            ├─ RoamerAI.ts
+│            ├─ AIRoamer.ts
 │            └─ AITypes.ts
 │
 ├─ GameModes/
