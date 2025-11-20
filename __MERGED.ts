@@ -25,17 +25,17 @@ abstract class AGameMode {
 }
 
 
-// -------- FILE: src\GameModes\GameMode.ts --------
-class GameMode extends AGameMode {
+// -------- FILE: src\GameModes\TDM\TDMGameMode.ts --------
+class TDMGameMode extends AGameMode {
     onGameModeStarted(): void {
-        console.log("Great Mod!");
+        console.log("Example TDM Mod!");
     }
 }
 
 
 // -------- FILE: src\main.ts --------
 
-// Create the active game mode instanceconst gameMode = new GameMode()
+// Create the active game mode instanceconst gameMode = new TDMGameMode()
 
 /* ------------------------------------------------------------
  *  ENGINE EVENTS -> Redirect to GameMode instance
