@@ -24,7 +24,6 @@ abstract class AGameMode {
     ongoingPlayer?(eventPlayer: mod.Player): void
 }
 
-
 // -------- FILE: src\GameModes\TDM\TDMGameMode.ts --------
 class TDMGameMode extends AGameMode {
     onGameModeStarted(): void {
@@ -32,10 +31,9 @@ class TDMGameMode extends AGameMode {
     }
 }
 
-
 // -------- FILE: src\main.ts --------
-
-// Create the active game mode instanceconst gameMode = new TDMGameMode()
+// Create the active game mode instance
+const gameMode = new TDMGameMode()
 
 /* ------------------------------------------------------------
  *  ENGINE EVENTS -> Redirect to GameMode instance
