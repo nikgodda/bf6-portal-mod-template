@@ -1,55 +1,63 @@
-# 🚀 BF6 Portal Mod Template
+# BF6 Portal Mod Template
 
-A starter template for building Battlefield 6 Portal mods using the bf6-portal-mod-framework.
+A fully featured starter template for building Battlefield 6 Portal Mods using the `bf6-portal-mod-framework`.
 
-This template provides:
+This template includes:
 
-- 📁 Clean TypeScript structure
-- 🧠 GameMode class system
-- 🔧 Auto merge into single __MERGED.ts
-- 📦 Portal SDK and modlib support
-- 🛠 Simple CLI commands for building and updating SDK
+- BF6 SDK typings (`SDK/mod`, `SDK/modlib`)
+- Clean project structure
+- Merge + Watch tooling via `bf6mod` CLI
+- Extendable GameMode architecture
+- Manual `update-sdk` script to refresh typings
 
 ---
 
-## ⚡ Quick Start
+# 🚀 Quick Start
+
+Use **degit** to copy the template into a new folder:
 
 ```bash
-git clone https://github.com/<you>/bf6-portal-mod-template my-mod
+npx degit nikgodda/bf6-portal-mod-template my-mod
 cd my-mod
 npm install
-npm run update-sdk
-npm run build
 ```
 
-Paste __MERGED.ts into the BF6 Portal Rules Editor.
+This creates a clean mod project you can immediately begin working with.
 
 ---
 
-## 📁 Structure
+# 📁 Project Structure
 
 ```
-src/
-  main.ts
-  Core/GameMode/AGameMode.ts
-  GameModes/GameMode.ts
-
 SDK/
-  mod/
-  modlib/
+  mod/        Type definitions for Portal mod API
+  modlib/     Utility library APIs
 
-__MERGED.ts
+src/
+  Core/
+    GameMode/AGameMode.ts
+  GameModes/
+    GameMode.ts
+  main.ts
+
+__MERGED.ts   (generated automatically)
 ```
 
 ---
 
-## 🧠 How It Works
+# 🧠 How It Works
 
-### AGameMode
-Defines all event hooks
+### `AGameMode`
+Base class providing all BF6 event callbacks, such as:
 
-### GameMode
-Your mod logic lives here
+- onGameModeStarted  
+- onPlayerJoinGame  
+- onPlayerDeployed  
+- onPlayerDied  
+- and more  
+
+### `GameMode`
+Your gameplay logic goes here:
 
 ```ts
 onGameModeStarted() {
@@ -57,44 +65,65 @@ onGameModeStarted() {
 }
 ```
 
-### main.ts
-Connects BF6 engine events to GameMode
-
-Also includes modlib example:
-
-```ts
-import * as modlib from "modlib"
-// modlib.ParseUI()
-```
+### `main.ts`
+Bridges Battlefield Portal engine events to your GameMode methods.
 
 ---
 
-## 🔧 Scripts
+# 🛠 Commands
 
-```bash
+### Build merged output
+
+```
 npm run build
-npm run update-sdk
+```
+
+Generates:
+
+```
+__MERGED.ts
+```
+
+Paste this file into the Portal Mod Editor.
+
+### Watch mode (auto-merge on file save)
+
+```
 npm run watch
 ```
 
----
+Rebuilds `__MERGED.ts` whenever files inside `src/` change.
 
-## 🔄 Updating Framework
+### Update SDK typings
 
-```bash
-npm update bf6-portal-mod-framework
+```
+npm run update-sdk
+```
+
+Downloads the latest official BF6 Portal SDK files into:
+
+```
+SDK/mod
+SDK/modlib
 ```
 
 ---
 
-## 🛠 Customization
+# 🛠 Customization
 
-- Add new .ts files under src
-- Merge tool automatically includes them
-- Do not edit __MERGED.ts manually
+Create new `.ts` files anywhere inside `src/`.  
+The merge tool includes all files automatically.
+
+Extend your project with:
+
+- additional game modes  
+- AI utilities  
+- gameplay logic  
+- shared helpers  
+- services  
 
 ---
 
-## 📄 License
+# 📜 License
 
 MIT
