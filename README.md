@@ -33,7 +33,7 @@ src/
   Core/GameMode/AGameMode.ts
   GameModes/GameMode.ts
 
-code/
+SDK/
   mod/
   modlib/
 
