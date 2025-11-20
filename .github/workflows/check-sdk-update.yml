@@ -1,0 +1,59 @@
+name: Check for SDK updates
+
+on:
+  schedule:
+    - cron: "0 8 * * *"  # every day at 08:00 UTC
+  workflow_dispatch:     # allow manual runs
+
+jobs:
+  check-sdk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout template repo
+        uses: actions/checkout@v4
+
+      - name: Clone Official BF6 SDK
+        run: |
+          git clone --depth 1 https://github.com/battlefield-portal-community/OfficailPortalSDK.git sdk-upstream
+
+      - name: Compare mod/index.d.ts
+        id: diff_mod
+        run: |
+          if ! diff -q SDK/mod/index.d.ts sdk-upstream/code/mod/index.d.ts > /dev/null; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Compare modlib/index.ts
+        id: diff_modlib
+        run: |
+          if ! diff -q SDK/modlib/index.ts sdk-upstream/code/modlib/index.ts > /dev/null; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if no updates found
+        if: ${{ steps.diff_mod.outputs.changed == 'false' && steps.diff_modlib.outputs.changed == 'false' }}
+        run: echo "No SDK updates."
+
+      - name: Apply updates
+        if: ${{ steps.diff_mod.outputs.changed == 'true' || steps.diff_modlib.outputs.changed == 'true' }}
+        run: |
+          cp sdk-upstream/code/mod/index.d.ts SDK/mod/index.d.ts
+          cp sdk-upstream/code/modlib/index.ts SDK/modlib/index.ts
+
+      - name: Create Pull Request
+        if: ${{ steps.diff_mod.outputs.changed == 'true' || steps.diff_modlib.outputs.changed == 'true' }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Update BF6 SDK (automated)"
+          title: "Update BF6 SDK"
+          body: |
+            Automatic update of BF6 Portal SDK files.
+            - `mod/index.d.ts`
+            - `modlib/index.ts`
+          branch: auto/update-sdk
+          delete-branch: true
