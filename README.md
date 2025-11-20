@@ -1,6 +1,6 @@
 # BF6 Portal Mod Template
 
-A fully featured starter template for building Battlefield 6 Portal Mods using the `bf6-portal-mod-framework`.
+A fully featured starter template for scripting Battlefield 6 Portal Mods using the `bf6-portal-mod-framework`.
 
 This template includes:
 
