@@ -26,6 +26,32 @@ This creates a clean mod project you fully own.
 
 ---
 
+# 🔧 Framework Dependency
+
+This template relies on the **bf6-portal-mod-framework**, which provides:
+
+- the merge system  
+- the file watcher  
+- the CLI (`bf6mod`)  
+- the SDK updater  
+- project build logic  
+
+To update the framework to the latest version:
+
+```bash
+npm update bf6-portal-mod-framework
+```
+
+Or to force the absolute newest version from npm:
+
+```bash
+npm install bf6-portal-mod-framework@latest --save-dev
+```
+
+Updating the framework does **not** modify your mod code — only the tooling.
+
+---
+
 # 📁 Project Structure
 
 ```
@@ -61,13 +87,13 @@ Base class providing all BF6 event callbacks, such as:
 - and more  
 
 ### `TDMGameMode`
-Example game mode implementation stored under:
+An example game mode implementation found in:
 
 ```
 src/GameModes/TDM/TDMGameMode.ts
 ```
 
-You place your game logic inside the class:
+Add your own gameplay logic inside the class:
 
 ```ts
 onGameModeStarted() {
@@ -76,7 +102,7 @@ onGameModeStarted() {
 ```
 
 ### `main.ts`
-This file bridges Portal engine events into your selected GameMode.
+This file bridges Battlefield Portal engine events into your selected GameMode.
 
 This is the entry point used by the merge tool.
 
@@ -106,7 +132,7 @@ Paste its contents into the BF6 Portal Mod Editor.
 npm run watch
 ```
 
-Rebuilds `__MERGED.ts` whenever files in `src/` are changed.
+Rebuilds `__MERGED.ts` whenever files in `src/` change.
 
 ---
 
@@ -123,25 +149,25 @@ SDK/mod
 SDK/modlib
 ```
 
-Use this when EA releases updates.
+Use this whenever EA updates the SDK.
 
 ---
 
 # ✨ Customization
 
-Add new `.ts` files anywhere inside `src/`.
+Add new `.ts` files anywhere inside `src/`.  
+The merge tool automatically includes the entire folder tree.
 
-The merge tool automatically includes all source files.
+You can freely extend:
 
-You may add:
-
-- additional game modes  
+- new gameplay modes  
 - AI utilities  
-- reusable helpers  
-- gameplay logic modules  
-- services for managing state, UI, objectives, etc.
+- shared helper modules  
+- objectives  
+- UI logic  
+- any game systems your mod requires  
 
-Everything inside `src/` is merged into `__MERGED.ts`.
+Everything inside `src/` becomes part of the final merged script.
 
 ---
 
