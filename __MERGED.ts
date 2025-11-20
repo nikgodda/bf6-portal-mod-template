@@ -28,7 +28,7 @@ abstract class AGameMode {
 // -------- FILE: src\GameModes\TDM\TDMGameMode.ts --------
 class TDMGameMode extends AGameMode {
     onGameModeStarted(): void {
-        console.log("Example TDM Mod!");
+        console.log("Example TDM Mod1!");
     }
 }
 
