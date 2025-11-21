@@ -87,9 +87,9 @@ src/
 │       ├─ APlayerManager.ts
 │       ├─ PlayerHuman.ts
 │       └─ AI/
-│            ├─ AbstractAI.ts
-│            ├─ AIRoamer.ts
-│            └─ AITypes.ts
+│            ├─ APlayerAI.ts
+│            ├─ PlayerAIRoamer.ts
+│            └─ PlayerAITypes.ts
 │
 ├─ GameModes/
 │  └─ TDM/
