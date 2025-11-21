@@ -66,8 +66,7 @@ src/
 ├─ main.ts
 │
 ├─ Core/
-│   └─ GameMode/
-│        └─ AGameMode.ts
+│   └─ AGameMode.ts        
 │
 └─ GameModes/
     └─ Example/
