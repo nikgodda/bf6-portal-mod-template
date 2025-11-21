@@ -4,7 +4,7 @@ npm-debug.log*
 
 # Build output
 dist/
-merged.ts
+__MERGED.ts
 
 # TypeScript
 *.tsbuildinfo
