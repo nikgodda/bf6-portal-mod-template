@@ -112,7 +112,7 @@ Base class providing all BF6 event callbacks, such as:
 - onPlayerDied  
 - and more  
 
-### `TDMGameMode`
+### `ExampleGameMode`
 An example game mode implementation located in:
 
 ```txt
