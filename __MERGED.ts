@@ -28,6 +28,9 @@ export abstract class AGameMode {
 export class ExampleGameMode extends AGameMode {
     onGameModeStarted(): void {
         console.log('Cool Example GameMod!')
+
+        // Example usage of modlib (optional hint)
+        modlib.ParseUI()
     }
 }
 
@@ -42,9 +45,6 @@ export const gameMode = new ExampleGameMode()
 
 export async function OnGameModeStarted() {
     gameMode.onGameModeStarted?.()
-
-    // Example usage of modlib (optional hint)
-    // modlib.ParseUI()
 }
 
 export function OnPlayerJoinGame(eventPlayer: mod.Player) {

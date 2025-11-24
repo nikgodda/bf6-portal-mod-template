@@ -1,4 +1,3 @@
-import * as modlib from 'modlib'
 import { ExampleGameMode } from './GameModes/Example/ExampleGameMode'
 
 // Create the active game mode instance
@@ -11,9 +10,6 @@ export const gameMode = new ExampleGameMode()
 
 export async function OnGameModeStarted() {
     gameMode.onGameModeStarted?.()
-
-    // Example usage of modlib (optional hint)
-    // modlib.ParseUI()
 }
 
 export function OnPlayerJoinGame(eventPlayer: mod.Player) {
