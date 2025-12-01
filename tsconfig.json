@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "target": "ES2020",
-        "module": "ESNext",
-        "moduleResolution": "Node",
+        "module": "Node16",
+        "moduleResolution": "Node16",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
@@ -18,7 +18,13 @@
         "typeRoots": ["./SDK/mod", "./SDK/modlib", "./node_modules/@types"]
     },
 
-    "include": ["src/**/*", "__MERGED.ts", "SDK/mod/**/*", "SDK/modlib/**/*"],
+    "include": [
+        "src/**/*",
+        "__SCRIPT.ts",
+        "__STRINGS.json",
+        "SDK/mod/**/*",
+        "SDK/modlib/**/*"
+    ],
 
     "exclude": ["node_modules", "dist"]
 }

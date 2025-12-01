@@ -29,6 +29,8 @@ export class ExampleGameMode extends AGameMode {
     onGameModeStarted(): void {
         console.log('Cool Example GameMod!')
 
+        mod.DisplayHighlightedWorldLogMessage(mod.Message('test7'))
+
         // Example usage of modlib (optional hint)
         modlib.ParseUI()
     }
