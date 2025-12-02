@@ -1,7 +1,7 @@
 import * as modlib from 'modlib'
 
 // -------- FILE: src\Core\AGameMode.ts --------
-export abstract class AGameMode {
+export abstract class Core_AGameMode {
     onGameModeStarted?(): void
     onPlayerJoinGame?(eventPlayer: mod.Player): void
     onPlayerDeployed?(eventPlayer: mod.Player): void
@@ -25,7 +25,7 @@ export abstract class AGameMode {
 }
 
 // -------- FILE: src\GameModes\Example\ExampleGameMode.ts --------
-export class ExampleGameMode extends AGameMode {
+export class ExampleGameMode extends Core_AGameMode {
     onGameModeStarted(): void {
         console.log('Cool Example GameMod!')
 
