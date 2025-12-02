@@ -1,6 +1,6 @@
 {
   "name": "bf6-portal-mod-template",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "build": "bf6mod build",
