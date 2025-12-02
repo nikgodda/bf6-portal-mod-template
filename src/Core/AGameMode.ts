@@ -1,4 +1,4 @@
-export abstract class AGameMode {
+export abstract class Core_AGameMode {
     onGameModeStarted?(): void
     onPlayerJoinGame?(eventPlayer: mod.Player): void
     onPlayerDeployed?(eventPlayer: mod.Player): void
