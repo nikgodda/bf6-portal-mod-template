@@ -1,1 +1,19 @@
-{}
+{
+  "dynamic": {
+    "range": {
+      "1": "dynamic.range.1",
+      "2": "dynamic.range.2"
+    },
+    "list": {
+      "Idle": "dynamic.list.Idle",
+      "Roam": "dynamic.list.Roam",
+      "Fight": "dynamic.list.Fight"
+    }
+  },
+  "test": "test",
+  "static": {
+    "message": "static.message",
+    "messageWithParams": "static.messageWithParams {}",
+    "stringkey": "static.stringkey"
+  }
+}
