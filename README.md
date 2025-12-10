@@ -4,14 +4,12 @@ This is the official starter template for creating Battlefield 6 Portal Mods usi
 
 It provides:
 
-- clean project structure  
-- ready `main.ts` and base `AGameMode`  
-- SDK typings included  
-- automatic merging into `__SCRIPT.ts`  
-- automatic string generation into `__STRINGS.json`  
-- full integration with the `bf6-portal-mod-framework` build system  
-
-Use this template to build structured BF6 Portal mods using folders, classes, and modules — the framework flattens everything into a single output script.
+-   clean project structure
+-   ready main.ts and AGameMode
+-   SDK typings
+-   automatic merging into \_\_SCRIPT.ts
+-   automatic string generation into \_\_STRINGS.json
+-   integration with bf6-portal-mod-framework
 
 ---
 
@@ -36,9 +34,6 @@ my-mod/
          (your modes here)
 ```
 
-All code lives in `src/`.  
-The framework merges all files into `__SCRIPT.ts`.
-
 ---
 
 # 🚀 Installation
@@ -46,8 +41,6 @@ The framework merges all files into `__SCRIPT.ts`.
 ```bash
 npm install
 ```
-
-Installs TypeScript + bf6-portal-mod-framework.
 
 ---
 
@@ -59,15 +52,12 @@ Installs TypeScript + bf6-portal-mod-framework.
 npm run build
 ```
 
-Creates:
+Produces:
 
 ```
 __SCRIPT.ts
 __STRINGS.json
 ```
-
-Paste the script into the Portal Web Editor  
-and upload the strings JSON into the UI.
 
 ---
 
@@ -77,9 +67,6 @@ and upload the strings JSON into the UI.
 npm run watch
 ```
 
-Re-merges automatically.  
-Strings not updated — run build after editing annotations.
-
 ---
 
 ### Update SDK
@@ -88,11 +75,9 @@ Strings not updated — run build after editing annotations.
 npm run update-sdk
 ```
 
-Downloads the latest Portal SDK typings into `SDK/`.
-
 ---
 
-# 🎮 How the Mod Runs
+# 🎮 How Mods Run
 
 main.ts:
 
@@ -101,13 +86,11 @@ import { MyGameMode } from './GameModes/MyGameMode'
 export const gameMode = new MyGameMode()
 ```
 
-Everything else is compiled and flattened into one script.
-
 ---
 
-# 💬 Strings System (via bf6-portal-mod-framework)
+# 💬 Strings System
 
-All strings are written into:
+Generates:
 
 ```
 __STRINGS.json
@@ -115,48 +98,75 @@ __STRINGS.json
 
 Supports:
 
-- static keys  
-- keys with parameters  
-- `mod.stringkeys`  
-- dynamic template literal references  
-- annotation-based dynamic values  
+-   static keys
+-   parameters
+-   mod.stringkeys
+-   dynamic template literal references
+-   annotation-based dynamic values
 
 ---
 
 ## 1️⃣ Static Strings
 
 ```ts
-mod.Message("hello")
+mod.Message('hello')
 ```
 
-With parameters:
+Produces:
+
+```json
+{
+    "hello": "hello"
+}
+```
+
+---
+
+### With Parameters
 
 ```ts
-mod.Message("x.y", 1, 2)
+mod.Message('static.messageWithParams', 1)
 ```
 
-Stringkeys:
+Produces:
+
+```json
+{
+    "static": {
+        "messageWithParams": "static.messageWithParams {}"
+    }
+}
+```
+
+---
+
+### Static StringKey
 
 ```ts
-mod.stringkeys.ui.menu.Start
+mod.stringkeys.static.stringkey
 ```
 
-Static keys always generate entries.
+Produces:
+
+```json
+{
+    "static": {
+        "stringkey": "static.stringkey"
+    }
+}
+```
 
 ---
 
 ## 2️⃣ Dynamic Strings (Correct Behavior)
 
-Dynamic message keys:
+Dynamic strings do not produce keys:
 
 ```ts
 mod.Message(`ai.bots.${i}`)
 ```
 
-**do NOT generate entries**.  
-Only annotations do.
-
-Example:
+Only annotations do:
 
 ```ts
 // @stringkeys ai.bots: 0..3
@@ -165,16 +175,18 @@ mod.Message(`ai.bots.${i}`)
 
 Generates:
 
+```json
+{
+    "ai": {
+        "bots": {
+            "0": "ai.bots.0",
+            "1": "ai.bots.1",
+            "2": "ai.bots.2",
+            "3": "ai.bots.3"
+        }
+    }
+}
 ```
-ai.bots.0
-ai.bots.1
-ai.bots.2
-ai.bots.3
-```
-
-Without annotation → nothing generated.
-
-Dynamic calls only mark namespaces as “used”.
 
 ---
 
@@ -189,11 +201,11 @@ Examples:
 // @stringkeys rank: A..F
 ```
 
-Annotations ALWAYS generate all declared values.
+Always generates nested output.
 
 ---
 
-## 🔥 Example
+## 🔥 Full Example
 
 Code:
 
@@ -210,37 +222,45 @@ mod.Message(`dynamic.range.${i}`)
 mod.Message(`dynamic.list.${state}`)
 ```
 
-Results:
+Output:
 
-```
-dynamic.range.1
-dynamic.range.2
-dynamic.list.Idle
-dynamic.list.Roam
-dynamic.list.Fight
-static.stringkey
-static.message
-static.messageWithParams {}
-test
+```json
+{
+    "dynamic": {
+        "range": {
+            "1": "dynamic.range.1",
+            "2": "dynamic.range.2"
+        },
+        "list": {
+            "Idle": "dynamic.list.Idle",
+            "Roam": "dynamic.list.Roam",
+            "Fight": "dynamic.list.Fight"
+        }
+    },
+    "test": "test",
+    "static": {
+        "message": "static.message",
+        "messageWithParams": "static.messageWithParams {}",
+        "stringkey": "static.stringkey"
+    }
+}
 ```
 
 ---
 
 # 🧩 Framework Reference
 
-This template is built to work with the official BF6 Portal Mod Framework:
+Framework repo:
 
 https://github.com/nikgodda/bf6-portal-mod-framework
 
-The framework provides:
+The template maps npm scripts to the framework:
 
-- merging system  
-- string extraction  
-- annotation support  
-- SDK updater  
-- CLI (`bf6mod build`, `bf6mod watch`, `bf6mod update-sdk`)  
-
-The template’s npm scripts map directly to these commands.
+```
+npm run build       → bf6mod build
+npm run watch       → bf6mod watch
+npm run update-sdk  → bf6mod update-sdk
+```
 
 ---
 
