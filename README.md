@@ -5,11 +5,13 @@ This is the official starter template for creating Battlefield 6 Portal Mods usi
 It provides:
 
 - clean project structure  
-- ready main.ts and AGameMode  
-- SDK typings  
-- automatic merging into __SCRIPT.ts  
-- automatic string generation into __STRINGS.json  
-- integration with bf6-portal-mod-framework  
+- ready `main.ts` and base `AGameMode`  
+- SDK typings included  
+- automatic merging into `__SCRIPT.ts`  
+- automatic string generation into `__STRINGS.json`  
+- full integration with the `bf6-portal-mod-framework` build system  
+
+Use this template to build structured BF6 Portal mods using folders, classes, and modules — the framework flattens everything into a single output script.
 
 ---
 
@@ -34,6 +36,9 @@ my-mod/
          (your modes here)
 ```
 
+All code lives in `src/`.  
+The framework merges all files into `__SCRIPT.ts`.
+
 ---
 
 # 🚀 Installation
@@ -41,6 +46,8 @@ my-mod/
 ```bash
 npm install
 ```
+
+Installs TypeScript + bf6-portal-mod-framework.
 
 ---
 
@@ -52,12 +59,15 @@ npm install
 npm run build
 ```
 
-Produces:
+Creates:
 
 ```
 __SCRIPT.ts
 __STRINGS.json
 ```
+
+Paste the script into the Portal Web Editor  
+and upload the strings JSON into the UI.
 
 ---
 
@@ -67,6 +77,9 @@ __STRINGS.json
 npm run watch
 ```
 
+Re-merges automatically.  
+Strings not updated — run build after editing annotations.
+
 ---
 
 ### Update SDK
@@ -75,9 +88,11 @@ npm run watch
 npm run update-sdk
 ```
 
+Downloads the latest Portal SDK typings into `SDK/`.
+
 ---
 
-# 🎮 How Mods Run
+# 🎮 How the Mod Runs
 
 main.ts:
 
@@ -86,11 +101,13 @@ import { MyGameMode } from './GameModes/MyGameMode'
 export const gameMode = new MyGameMode()
 ```
 
+Everything else is compiled and flattened into one script.
+
 ---
 
-# 💬 Strings System
+# 💬 Strings System (via bf6-portal-mod-framework)
 
-All strings go into:
+All strings are written into:
 
 ```
 __STRINGS.json
@@ -99,10 +116,10 @@ __STRINGS.json
 Supports:
 
 - static keys  
-- parameters  
-- mod.stringkeys  
-- dynamic template literals (as references)  
-- annotation-based dynamic strings  
+- keys with parameters  
+- `mod.stringkeys`  
+- dynamic template literal references  
+- annotation-based dynamic values  
 
 ---
 
@@ -124,19 +141,22 @@ Stringkeys:
 mod.stringkeys.ui.menu.Start
 ```
 
+Static keys always generate entries.
+
 ---
 
 ## 2️⃣ Dynamic Strings (Correct Behavior)
 
-Dynamic calls:
+Dynamic message keys:
 
 ```ts
 mod.Message(`ai.bots.${i}`)
 ```
 
-**do NOT generate dynamic keys.**
+**do NOT generate entries**.  
+Only annotations do.
 
-Only annotations generate:
+Example:
 
 ```ts
 // @stringkeys ai.bots: 0..3
@@ -152,17 +172,13 @@ ai.bots.2
 ai.bots.3
 ```
 
-Without annotation → nothing is generated.
+Without annotation → nothing generated.
+
+Dynamic calls only mark namespaces as “used”.
 
 ---
 
 ## 3️⃣ @stringkeys Annotation
-
-Format:
-
-```ts
-// @stringkeys <namespace>: <values>
-```
 
 Examples:
 
@@ -170,15 +186,16 @@ Examples:
 // @stringkeys ui.buttons: OK, Cancel, Retry
 // @stringkeys ai.state: Idle, Roam, Fight
 // @stringkeys ai.bots: 0..3
+// @stringkeys rank: A..F
 ```
 
-Annotations ALWAYS generate keys.
+Annotations ALWAYS generate all declared values.
 
 ---
 
 ## 🔥 Example
 
-### Code
+Code:
 
 ```ts
 mod.Message(`test`)
@@ -187,14 +204,13 @@ mod.Message(`static.messageWithParams`, 1)
 mod.stringkeys.static.stringkey
 
 // @stringkeys dynamic.range: 1..2
-for (let i = 0; i < 4; i++)
-    mod.Message(`dynamic.range.${i}`)
+mod.Message(`dynamic.range.${i}`)
 
 // @stringkeys dynamic.list: Idle, Roam, Fight
 mod.Message(`dynamic.list.${state}`)
 ```
 
-### Result
+Results:
 
 ```
 dynamic.range.1
@@ -207,6 +223,24 @@ static.message
 static.messageWithParams {}
 test
 ```
+
+---
+
+# 🧩 Framework Reference
+
+This template is built to work with the official BF6 Portal Mod Framework:
+
+https://github.com/nikgodda/bf6-portal-mod-framework
+
+The framework provides:
+
+- merging system  
+- string extraction  
+- annotation support  
+- SDK updater  
+- CLI (`bf6mod build`, `bf6mod watch`, `bf6mod update-sdk`)  
+
+The template’s npm scripts map directly to these commands.
 
 ---
 
