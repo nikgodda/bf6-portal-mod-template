@@ -10,8 +10,6 @@ export class ExampleGameMode extends Core_AGameMode {
         modlib.ParseUI()
 
         // Example usages of strings
-
-        mod.Message(`test`)
         
         mod.Message(`static.message`)
         mod.Message(`static.messageWithParams`, 1)
